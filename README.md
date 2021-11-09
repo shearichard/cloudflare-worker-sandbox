@@ -9,6 +9,8 @@ The .envrc in the root of this project is setup to force the Node version to lts
 ## my-ts-project
 Based on the Cloudflare sample seen here https://github.com/cloudflare/worker-typescript-template .
 
+I have setup .gitignore to suppress commits of wrangler.toml although [this post](https://github.com/cloudflare/wrangler/issues/209#issuecomment-541654484) suggests that's not necessary.
+
 
 
 
