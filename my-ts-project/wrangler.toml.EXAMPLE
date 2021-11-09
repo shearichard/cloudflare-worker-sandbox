@@ -1,0 +1,12 @@
+name = "BBBBBBBBBBBBB"
+type = "webpack"
+zone_id = ""
+account_id = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+route = ""
+workers_dev = true
+compatibility_date = "2021-11-08"
+
+[build]
+command = "npm install && npm run build"
+[build.upload]
+format = "service-worker"
