@@ -1,5 +1,10 @@
+//import {ParsedUrl} from simple-url-parser;
+import * as UrlUtils from '@dashlane/simple-url-parser';
+
 export async function handleRequestForIndexPage(request: Request): Promise<Response> {
     //let datetime: Date = new Date(); 
+    var parsedUrl = UrlUtils.getParsedUrl(request.url);
+    var filePath = UrlUtils.extractFilepathFromUrl(request.url);
     let datetimeraw = new Date();
     const fmtd_dt_local: string = new Intl.DateTimeFormat('en-XX', { timeZone: request.cf?.timezone, dateStyle: 'full', timeStyle: 'long' }).format(datetimeraw)
     //
@@ -73,6 +78,7 @@ export async function handleRequestForIndexPage(request: Request): Promise<Respo
 			<p>The path was : ${request.url}.</p>
             <p>The date/time was ${fmtd_dt_local}</p>
             <p>Long/Lat of requesting user-agent ${lat} , ${lng} </p>
+            <p>File path is : ${filePath}</p>
 		</div>
         </div>
         <!-- Optional JavaScript -->

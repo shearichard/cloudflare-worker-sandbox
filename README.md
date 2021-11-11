@@ -11,6 +11,6 @@ Based on the Cloudflare sample seen here https://github.com/cloudflare/worker-ty
 
 I have setup .gitignore to suppress commits of wrangler.toml although [this post](https://github.com/cloudflare/wrangler/issues/209#issuecomment-541654484) suggests that's not necessary.
 
-
+https://www.npmjs.com/package/@dashlane/simple-url-parser
 
 
