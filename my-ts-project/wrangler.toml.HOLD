@@ -1,0 +1,12 @@
+name = "my-ts-project"
+type = "webpack"
+zone_id = ""
+account_id = "a0189ca2b72cccd28a82d1dd999778a9"
+route = ""
+workers_dev = true
+compatibility_date = "2021-11-08"
+
+[build]
+command = "npm install && npm run build"
+[build.upload]
+format = "service-worker"
