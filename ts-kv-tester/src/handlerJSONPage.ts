@@ -1,7 +1,8 @@
 
 declare global {
-      const SHEARICHARD_TEST_0: KVNamespace;
+      const SRT0_NS: KVNamespace;
 }
+
 export async function handleRequestForJSON(request: Request): Promise<Response> {
     let datetimeiso = new Date().toISOString()
     let model_name = Math.random().toString().substr(2, 8);
@@ -14,7 +15,7 @@ export async function handleRequestForJSON(request: Request): Promise<Response> 
             }
         ] 
     }
-    SHEARICHARD_TEST_0.put(datetimeiso, JSON.stringify(defaultData))
+    SRT0_NS.put(datetimeiso, JSON.stringify(defaultData))
     //
     const json = JSON.stringify(defaultData, null, 2)
     //
