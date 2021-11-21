@@ -6,7 +6,7 @@ route = ""
 workers_dev = true
 compatibility_date = "2021-11-10"
 kv_namespaces = [ 
-  { binding = "SHEARICHARD_TEST_0", id = "979e3d873f9d4fa4ab6c251dad403c30" }
+  { binding = "SRT0_NS", preview_id = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", id = "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb" }
 ]
 
 [build]
