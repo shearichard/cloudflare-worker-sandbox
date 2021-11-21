@@ -114,10 +114,6 @@ const persistAuth = async exchange => {
   }
 
   return { headers, status: 302 }
-
-
-
-
 }
 
 // https://github.com/pose/webcrypto-jwt/blob/master/workers-site/index.js
@@ -149,19 +145,6 @@ const decodeJWT = function(token) {
   }
 }
 
-const persistAuth = async exchange => {
-  const body = await exchange.json()
-
-  if (body.error) {
-    throw new Error(body.error)
-  }
-
-  const decoded = JSON.parse(decodeJWT(body.id_token))
-  const validToken = validateToken(decoded)
-  if (!validToken) {
-    return { status: 401 }
-  }
-}
 const validateToken = token => {
   try {
     const dateInSecs = d => Math.ceil(Number(d) / 1000)
