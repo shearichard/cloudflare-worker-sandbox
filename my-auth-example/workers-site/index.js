@@ -1,4 +1,5 @@
 import { getAssetFromKV, mapRequestToAsset } from '@cloudflare/kv-asset-handler'
+import { authorize, handleRedirect } from "./auth0"
 
 /**
  * The DEBUG flag will do two things that help during development:
@@ -29,11 +30,45 @@ async function handleEvent(event) {
         bypassCache: true,
       }
     }
-
-    const page = await getAssetFromKV(event, options)
-
+    //
+    //
+    //
+    // BEGINNING OF HANDLE AUTH REDIRECT CODE BLOCK
+    if (url.pathname === "/auth") {
+      const authorizedResponse = await handleRedirect(event)
+      if (!authorizedResponse) {
+        return new Response("Unauthorized", { status: 401 })
+      }
+      response = new Response(response.body, {
+        response,
+        ...authorizedResponse,
+      })
+      return response
+    }
+    // END OF HANDLE AUTH REDIRECT CODE BLOCK
+    const [authorized, { authorization, redirectUrl }] = await authorize(event)
+    if (authorized && authorization.accessToken) {
+      request = new Request(request, {
+        headers: {
+          Authorization: `Bearer ${authorization.accessToken}`,
+        },
+      })
+    }
+    // BEGINNING OF REDIRECT CODE BLOCK
+    if (!authorized) {
+      return Response.redirect(redirectUrl)
+    }
+    // END OF REDIRECT CODE BLOCK
+    //
     // allow headers to be altered
+    //
+    // BEGINNING OF WORKERS SITES
+    // Make sure to not touch this code for the majority of the tutorial.
+    //
+    const page = await getAssetFromKV(event, options)
     const response = new Response(page.body, page)
+    //
+    // END OF WORKERS SITES
 
     response.headers.set('X-XSS-Protection', '1; mode=block')
     response.headers.set('X-Content-Type-Options', 'nosniff')
